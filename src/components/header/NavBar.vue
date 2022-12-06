@@ -28,6 +28,7 @@ export default {
       return [
         { path: '/tasks', text: 'Tasks' },
         { path: '/admin', text: 'Admin' },
+        { path: '/login', text: 'Login' },
       ]
     },
   },

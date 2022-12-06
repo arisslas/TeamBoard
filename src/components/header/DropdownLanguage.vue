@@ -35,10 +35,6 @@
             id: 'en',
             image: require(`@/assets/language-icons/english.png`)
           },
-          FR: {
-            id: 'fr',
-            image: require(`@/assets/language-icons/french.png`)
-          }
         },
         showFlags: false,
         DF: {
@@ -52,7 +48,7 @@
       changeLanguage(language) {
         this.DF.image = language.image
         this.showFlags = false
-        i18n.locale=language.id
+        i18n.locale = language.id
       },
       open() {
         this.showFlags = !this.showFlags
@@ -81,15 +77,15 @@
   
   .lang-menu .list {
     position: absolute;
-    top: 63px;
-    right: 102px;
+    top: 90px;
+    right: 300px;
     width: 58px;
     height: auto;
     padding: 10px;
-    border: 1px solid #f8f8f8;
+    border: 1px solid rgb(96, 94, 94);
     border-radius: 5px;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-    background-color: #fff;
+    background-color: rgb(96, 94, 94);
   }
   
   .lang-menu .list .flag {
@@ -109,8 +105,8 @@
   }
   
   .flag {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
   </style>
   

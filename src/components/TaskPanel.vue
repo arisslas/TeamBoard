@@ -1,21 +1,16 @@
 <template>
   <div>
-    <h1>{{ $t('TASK_TITLE') }}</h1>
+    <h1 class="my-8">{{ ($t('TASK_TITLE')).toUpperCase() }}</h1>
     <div class="flex mt-4 mx-8 example-parent mx-10 my-10 flex items-strech">
       <div v-for="(item, i) in columns" :key="i" class="droptarget example-dropzone mx-2 bg-gray-500 rounded"
         v-on:drop="drop" v-on:dragover="allowDrop">
-        <div class="bg-slate-400 py-2">{{ item.nombre }}</div>
+        <div class="bg-slate-400 py-2">{{$t(item.nombre) }}</div>
         <div v-for="(task) in taskList.filter(task => task.status==i)" :key="task.id" v-on:dragstart="dragStart" draggable="true" :id="task.id" class="example-draggable">
-          {{task.name}}
-          {{task.description}}
+         <div>{{(task.name).toUpperCase()}}</div> 
+         <div>{{task.description}}</div> 
         </div>
       </div>
     </div>
-     <button data-testid="accept-button"
-        class="leading-tight float-right bg-red-500 hover:bg-red-800 text-white text-sm uppercase font-bold py-2 px-4 rounded-full w-54 h-8 focus:outline-none"
-        @click="getTasks">
-        OK
-      </button>
   </div>
 </template>
 <script>
@@ -25,14 +20,17 @@ export default {
   data() {
     return {
       columns: [
-        { nombre: 'backlog' },
-        { nombre: 'to do' },
-        { nombre: 'in progress' },
-        { nombre: 'review' },
-        { nombre: 'done' },
+        { nombre: 'BACKLOG'},
+        { nombre: 'TO_DO' },
+        { nombre: 'PROGRESS' },
+        { nombre: 'REVIEW' },
+        { nombre: 'DONE' },
       ],
       taskList: [],
     }
+  },
+  mounted() {
+    this.getTasks()
   },
   methods: {
     dragStart: function (event) {
@@ -57,7 +55,6 @@ export default {
 </script>
 <style>
 .example-parent {
-  border: 2px solid #dfa612;
   color: black;
   display: flex;
   font-family: sans-serif;

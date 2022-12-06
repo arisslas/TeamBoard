@@ -1,5 +1,11 @@
 export const en = {
   ACCESS: 'Access',
   TASK_TITLE: 'Task Panel',
-  ADMIN_TITLE: 'Administration panel'
+  ADMIN_TITLE: 'Administration panel',
+  BACKLOG: 'Backlog',
+  TO_DO: 'To do' ,
+  PROGRESS: 'In progress' ,
+  REVIEW: 'Review' ,
+  DONE: 'Done' 
+
 }
