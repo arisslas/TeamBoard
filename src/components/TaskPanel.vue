@@ -2,7 +2,7 @@
   <div>
     <h1 class="my-8">{{ ($t('TASK_TITLE')).toUpperCase() }}</h1>
     <div class="flex mt-4 mx-8 example-parent mx-10 my-10 flex items-strech">
-      <div v-for="(item, i) in columns" :key="i" class="droptarget example-dropzone mx-2 bg-gray-500 rounded"
+      <div v-for="(item, i) in columns" :key="i" :id="i" class="droptarget example-dropzone mx-2 bg-gray-500 rounded"
         v-on:drop="drop" v-on:dragover="allowDrop">
         <div class="bg-slate-400 py-2">{{$t(item.nombre) }}</div>
         <div v-for="(task) in taskList.filter(task => task.status==i)" :key="task.id" v-on:dragstart="dragStart" draggable="true" :id="task.id" class="example-draggable">
@@ -41,15 +41,26 @@ export default {
     },
     drop: function (event) {
       event.preventDefault()
-      var data = event.dataTransfer.getData('Text')
-      event.target.appendChild(document.getElementById(data))
-      console.log()
+      var taskId = event.dataTransfer.getData('Text')
+      event.target.appendChild(document.getElementById(taskId))
+      console.log('soltado')
+      let newStatus= event.target.id
+      let id= taskId
+      this.updateTaskStatus(id,newStatus)
+ 
     },
     async getTasks() {
       let prueba = await taskService.getAllTasks()
       this.taskList=prueba.tasks
       console.log(this.taskList)
-    }
+    },
+
+    updateTaskStatus(id,newStatus) {
+      taskService.updateTaskStatus(id,newStatus)
+        .then(() =>{ this.getTasks()} )
+    
+    },
+    
   },
 }
 </script>

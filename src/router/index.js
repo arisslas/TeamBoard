@@ -10,7 +10,7 @@ const routes = [
   {
     path: '/admin',
     name:'/admin',
-    component: () => import('../components/AdminPanel.vue'),
+    component: () => import('../components/header/AdminPanel/AdminPanel.vue'),
   },
 
   {

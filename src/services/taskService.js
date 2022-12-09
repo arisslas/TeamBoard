@@ -8,7 +8,14 @@ function factory() {
                 .select('*')
 
             return { tasks, error }
-        }
+        },
+        async updateTaskStatus(id,newStatus) {
+            const { data, error } = await supabase
+            .from('tasks')
+            .update({status:newStatus  })
+            .eq('id', id)
+               return{data,error}
+           }
     }
 }
 
