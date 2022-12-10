@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="my-8">
-      {{ ($t('ADMIN_TITLE')).toUpperCase() }}
+    <h1 class="my-8 uppercase">
+      {{ ($t('ADMIN_TITLE'))}}
     </h1>
     <table class="table-fixed mx-8">
   <thead>

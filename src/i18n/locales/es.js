@@ -6,5 +6,6 @@ export const es = {
   TO_DO: 'Pendiente' ,
   PROGRESS: 'En curso' ,
   REVIEW: 'Revisión' ,
-  DONE: 'Acabado' 
+  DONE: 'Acabado',
+  CREATE_TASK: 'Crear tarea'
 }

@@ -6,6 +6,7 @@ export const en = {
   TO_DO: 'To do' ,
   PROGRESS: 'In progress' ,
   REVIEW: 'Review' ,
-  DONE: 'Done' 
+  DONE: 'Done' ,
+  CREATE_TASK: 'Create Task'
 
 }

@@ -15,10 +15,20 @@ function factory() {
             .update({status:newStatus  })
             .eq('id', id)
                return{data,error}
+           },
+        async getUserProjects(userId) {
+            const { data, error } = await supabase
+            .from('tasks')
+            .select('project_id')
+            .eq('user_id', userId)
+               return{data,error}
            }
     }
 }
 
 export default factory()
+
+
+//86f4ed31-0cda-43ca-83ab-33e54c7f8612
 
 
