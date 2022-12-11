@@ -11,6 +11,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { toastConfiguration } from '@/components/Toast/toast.configuration.js'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
+import store from './store'
 
 
 Vue.config.productionTip = false
@@ -19,10 +20,12 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(VueRouter)
 Vue.use(Toast, toastConfiguration)
 setI18nSetup()
+Vue.config.devtools = true
 document.title='TeamBoard'
 
 new Vue({
   i18n,
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

@@ -28,7 +28,7 @@
 </template>
 <script>
 import taskService from '@/services/taskService'
-import CreateModal from './common/CreateModal.vue'
+import CreateModal from '@/components/common/sharedModules/CreateModal.vue'
 export default {
   name: "TaskPanel",
   components: { CreateModal },
