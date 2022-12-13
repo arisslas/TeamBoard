@@ -1,17 +1,24 @@
 <template>
   <div>
     <NavBar></NavBar>
-
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import NavBar from './header/NavBar.vue'
+import { mapActions} from 'vuex'
 export default {
   name: 'HelloWorld',
   props: {
     msg: String,
+  },
+  beforeMount(){
+    this.getAllUsers()
+  },
+  methods: {
+    ...mapActions('user', ['getAllUsers']),
+
   },
   components: { NavBar },
 }

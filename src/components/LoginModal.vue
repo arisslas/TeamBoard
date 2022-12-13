@@ -2,63 +2,78 @@
   <div class="wrapper fadeInDown" id="fondo">
     <div id="formContent">
       <!-- Tabs Titles -->
-      <h2 :class="[{ active: !showRegister }]" v-on:click="showLogIn()"> Acceder</h2>
-      <h2 :class="[{ active: showRegister }]" v-on:click="changeForm()">Registrarse </h2>
+      <h2 :class="[{ active: !showRegister }]" v-on:click="showLogIn()">
+        Acceder
+      </h2>
+      <h2 :class="[{ active: showRegister }]" v-on:click="changeForm()">
+        Registrarse
+      </h2>
 
       <!-- Icon -->
       <div class="fadeIn first" id="icono">
-        <img :src="imageSrc" id='icon' alt="User Icon" />
+        <img :src="imageSrc" id="icon" alt="User Icon" />
       </div>
 
       <!-- Login Form -->
       <div>
         <form @submit.prevent="onSubmit" class="formulario">
           <div v-if="showRegister">
-            <input id='name' type="text" placeholder="name" autocomplete="off" v-on:keyup='onKeyUp($event)' />
+            <input
+              id="name"
+              type="text"
+              placeholder="name"
+              autocomplete="off"
+              v-on:keyup="onKeyUp($event)"
+            />
           </div>
-          <input id='email' class="fadeIn first" type="text" placeholder="email" autocomplete="off"
-            v-on:keyup='onKeyUp($event)' />
-          <input id='password' class="fadeIn first" type="password" placeholder="password" v-on:focus='secret()'
-            v-on:blur='nosecret()' />
+          <input
+            id="email"
+            class="fadeIn first"
+            type="text"
+            placeholder="email"
+            autocomplete="off"
+            v-on:keyup="onKeyUp($event)"
+          />
+          <input
+            id="password"
+            class="fadeIn first"
+            type="password"
+            placeholder="password"
+            v-on:focus="secret()"
+            v-on:blur="nosecret()"
+          />
           <div>
             <div id="boton">
-              <input type="submit" class="fadeIn first"  value="send">
+              <input type="submit" class="fadeIn first" value="send" />
             </div>
           </div>
         </form>
       </div>
-
-      <!-- Remind Passowrd 
-            <div id="formFooter">
-                <a class="underlineHover" href="#">he olvidado la contraseña</a>
-            </div>-->
-
     </div>
   </div>
-
 </template>
 <script>
-import router from '@/router'
-import { createToast } from '@/components/Toast'
-import loginService from '@/services/loginService'
+import router from "@/router";
+import { createToast } from "@/components/Toast";
+import loginService from "@/services/loginService";
+import * as authFunction from "@/components/common/helpers"
 export default {
-  name: 'LoginModal',
+  name: "LoginModal",
   data() {
     return {
-      imageSrc: require('@/assets/img/look/5.png'),
-      mail: '',
-      password: '',
-      name: '',
-      showRegister: false
-    }
+      imageSrc: require("@/assets/img/look/5.png"),
+      mail: "",
+      password: "",
+      name: "",
+      showRegister: false,
+    };
   },
   methods: {
     //animacion login
     secret() {
       let cont = 1;
-      console.log(cont);
       const cubrirOjos = setInterval(() => {
-        this.imageSrc = require('@/assets/img/secret/' + cont + '.png');
+        this.imageSrc = require("@/assets/img/secret/" + cont + ".png");
         if (cont < 6) {
           cont++;
         } else {
@@ -70,7 +85,7 @@ export default {
     nosecret() {
       let cont = 6;
       const descubrirOjos = setInterval(() => {
-        this.imageSrc = require('@/assets/img/secret/' + cont + '.png');
+        this.imageSrc = require("@/assets/img/secret/" + cont + ".png");
         if (cont > 1) {
           cont--;
         } else {
@@ -80,111 +95,100 @@ export default {
     },
 
     onKeyUp(event) {
-
-      this.passwordLenght = (event.target).value.length;
+      this.passwordLenght = event.target.value.length;
       if (this.passwordLenght >= 0 && this.passwordLenght <= 2) {
-        this.imageSrc = require('@/assets/img/look/1.png');
+        this.imageSrc = require("@/assets/img/look/1.png");
       } else if (this.passwordLenght >= 3 && this.passwordLenght <= 5) {
-        this.imageSrc = require('@/assets/img/look/2.png');
+        this.imageSrc = require("@/assets/img/look/2.png");
       } else if (this.passwordLenght >= 6 && this.passwordLenght <= 8) {
-        this.imageSrc = require('@/assets/img/look/3.png');
+        this.imageSrc = require("@/assets/img/look/3.png");
       } else if (this.passwordLenght >= 9 && this.passwordLenght <= 11) {
-        this.imageSrc = require('@/assets/img/look/4.png');
+        this.imageSrc = require("@/assets/img/look/4.png");
       } else if (this.passwordLenght >= 12 && this.passwordLenght <= 13) {
-        this.imageSrc = require('@/assets/img/look/5.png');
+        this.imageSrc = require("@/assets/img/look/5.png");
       } else if (this.passwordLenght >= 14 && this.passwordLenght <= 16) {
-        this.imageSrc = require('@/assets/img/look/6.png');
+        this.imageSrc = require("@/assets/img/look/6.png");
       } else if (this.passwordLenght >= 17 && this.passwordLenght <= 19) {
-        this.imageSrc = require('@/assets/img/look/7.png');
+        this.imageSrc = require("@/assets/img/look/7.png");
       } else if (this.passwordLenght >= 20 && this.passwordLenght <= 22) {
-        this.imageSrc = require('@/assets/img/look/8.png');
+        this.imageSrc = require("@/assets/img/look/8.png");
+      } else {
+        this.imageSrc = require("@/assets/img/look/9.png");
       }
-      else {
-        this.imageSrc = require('@/assets/img/look/9.png');
-      }
-
     },
 
     onSubmit(submitEvent) {
-      this.mail = submitEvent.target.elements.email.value
-      this.password = submitEvent.target.elements.password.value
-      if(this.checkForm()){
-      console.log(this.mail)
-      console.log(this.password)
-      this.showRegister ?
-        (this.signUp(this.mail, this.password),
-        this.name = submitEvent.target.elements.name.value) :
-        this.signIn(this.mail, this.password)
-     }
+      this.mail = submitEvent.target.elements.email.value;
+      this.password = submitEvent.target.elements.password.value;
+      if (this.checkForm()) {
+        this.showRegister
+          ? (this.signUp(this.mail, this.password),
+            (this.name = submitEvent.target.elements.name.value))
+          : this.signIn(this.mail, this.password);
+      }
     },
 
     signIn(mail, password) {
-      console.log('in')
-      loginService.signIn(mail, password)
+      loginService
+        .signIn(mail, password)
         .then((user) => {
-          if(user.data)
-          {router.push({ path: '/tasks' })}
-          if(user.error){
-            this.showErrorToast(''+user.error)
-            console.log(user.error)
+          if (user) {
+            authFunction.setAuthenticated('true')
+            router.push({ path: "/tasks" });
+            location.reload()
           }
-         
+          if (user.error) {
+            this.showErrorToast("" + user.error);
+          }
         })
-        .catch((error)=> {if(error){
-          console.log(error)
-        }});
+        .catch((error) => {
+          if (error) {
+            console.log(error);
+          }
+        });
     },
 
     signUp(mail, password) {
-      console.log('up')
-      loginService.signUp(mail, password)
-        .then((resp) =>
-        {
-          this.updatePersonalData(resp.data.user.id, this.name),
-          router.push({ path: '/tasks' })
-        } )
-    
+      loginService.signUp(mail, password).then((resp) => {
+        this.updatePersonalData(resp.data.user.id, this.name),
+          router.push({ path: "/tasks" });
+      });
     },
 
     changeForm() {
-      this.showRegister = true
-      console.log(this.showRegister)
+      this.showRegister = true;
     },
 
     showLogIn() {
-      this.showRegister = false
-      console.log(this.showRegister)
+      this.showRegister = false;
     },
 
     updatePersonalData(id, name) {
-      loginService.updatePersonalData(id, name).then((data) => console.log(data))
+      loginService
+        .updatePersonalData(id, name)
+        .then((data) => console.log(data));
     },
 
-    checkForm(){
-      console.log('*')
+    checkForm() {
       if (this.mail && this.password) {
-        console.log('to gucci')
         return true;
       }
       if (!this.mail) {
-        this.showErrorToast('mail required')
+        this.showErrorToast("mail required");
       }
       if (!this.password) {
-        this.showErrorToast('pass required.')
+        this.showErrorToast("pass required.");
       }
-
     },
     showErrorToast(mensaje) {
-      const toastError = createToast(mensaje)
-      this.$toast.error(toastError)
+      const toastError = createToast(mensaje);
+      this.$toast.error(toastError);
     },
-    
-  }
-
-}
+  },
+};
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url("https://fonts.googleapis.com/css?family=Poppins");
 
 /* BASIC */
 
@@ -197,8 +201,6 @@ body {
   height: 100vh;
 }
 
-
-
 h2 {
   text-align: center;
   font-size: 16px;
@@ -208,8 +210,6 @@ h2 {
   margin: 40px 8px 10px 8px;
   color: #cccccc;
 }
-
-
 
 /* STRUCTURE */
 
@@ -268,12 +268,11 @@ h2.active {
   border-bottom: 2px solid #476b6b;
 }
 
-
 /* FORM TYPOGRAPHY*/
 
-input[type=button],
-input[type=submit],
-input[type=reset] {
+input[type="button"],
+input[type="submit"],
+input[type="reset"] {
   background-color: #476b6b;
   border: none;
   color: white;
@@ -295,15 +294,15 @@ input[type=reset] {
   transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover,
-input[type=submit]:hover,
-input[type=reset]:hover {
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover {
   background-color: #476b6b;
 }
 
-input[type=button]:active,
-input[type=submit]:active,
-input[type=reset]:active {
+input[type="button"]:active,
+input[type="submit"]:active,
+input[type="reset"]:active {
   -moz-transform: scale(0.95);
   -webkit-transform: scale(0.95);
   -o-transform: scale(0.95);
@@ -311,7 +310,7 @@ input[type=reset]:active {
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type="text"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -332,7 +331,7 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type=password] {
+input[type="password"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -353,17 +352,14 @@ input[type=password] {
   border-radius: 5px 5px 5px 5px;
 }
 
-
-input[type=text]:focus {
+input[type="text"]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type="text"]:placeholder {
   color: #cccccc;
 }
-
-
 
 /* ANIMATIONS */
 
@@ -457,7 +453,6 @@ input[type=text]:placeholder {
   animation-delay: 0.4s;
 }
 
-
 /* Simple CSS3 Fade-in Animation */
 .underlineHover:after {
   display: block;
@@ -477,8 +472,6 @@ input[type=text]:placeholder {
 .underlineHover:hover:after {
   width: 100%;
 }
-
-
 
 /* OTHERS */
 

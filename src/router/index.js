@@ -6,7 +6,7 @@ const routes = [
     name:'/tasks',
     component: () => import('../components/TaskPanel.vue'),
   },
- 
+
   {
     path: '/admin',
     name:'/admin',
@@ -18,7 +18,12 @@ const routes = [
     name:'/login',
     component: () => import('../components/LoginModal.vue'),
   },
-  
+  {
+    path: '/',
+    name:'/',
+    component: () => import('../components/TaskPanel.vue'),
+  },
+
 ]
 
 const router = new VueRouter({

@@ -7,19 +7,25 @@
       :key="section.path"
       :to="{ name: section.path }"
     >
-      <div
+      <div v-if="isAuthenticated"
         class="w-40 h-6 text-center uppercase font-extrabold hover:border-b-2 hover:border-green-500"
         :class="{ active: isCurrentSection(section.path) }"
       >
         {{ section.text }}
       </div>
     </router-link>
+    <router-link to="/login"
+    v-if="!isAuthenticated"
+    class="w-40 h-6 text-center uppercase font-extrabold hover:border-b-2 hover:border-green-500"
+   :class="{ active: isCurrentSection('/login') }"
+    >Login</router-link>
     <DropdownLanguage />
   </div>
 </template>
 
 <script>
 import DropdownLanguage from './DropdownLanguage.vue'
+import * as authFunction from "@/components/common/helpers"
 export default {
   name: 'NavBar',
   components: { DropdownLanguage },
@@ -28,9 +34,16 @@ export default {
       return [
         { path: '/tasks', text: 'Tasks' },
         { path: '/admin', text: 'Admin' },
-        { path: '/login', text: 'Login' },
       ]
     },
+    isAuthenticated() {
+      let isAuth = authFunction.getAuthenticated()
+      if (isAuth === 'true' ) {
+        return true
+      }else {
+         return false
+      }
+    }
   },
   methods: {
     isCurrentSection(path) {

@@ -7,6 +7,25 @@ export const en = {
   PROGRESS: 'In progress' ,
   REVIEW: 'Review' ,
   DONE: 'Done' ,
-  CREATE_TASK: 'Create Task'
+  CREATE_TASK: 'Create Task',
+  EDIT_TASK: 'Edit task',
+  USER:'User',
+  TASK:'Task',
+  PROJECT: 'Project',
+  DESCRIPTION:'Description',
+  TITLE:'Title',
+  EMPTY_FIELDS: 'All fields must be filled',
+  SUCCESS:'Record added successfully',
+  CONFIRM:'Accept',
+  CANCEL:'Cancel',
+  EDIT:'Edit',
+  MAX_CHAR_TITLE:'Maximum number of characters 60',
+  MAX_CHAR_DESCRIPTION:'Maximum number of characters 200',
+  STATUS:'Status',
+  ACTIONS:'Actions',
+  DELETE_TASK:'Delete task',
+  DELETE_SUCCESS:'Record deleted successfully',
+  SUBTITLE_DELETE:'This action is not reversible',
+  MESSAGE_DELETE:'Are you sure you want to delete this task?'
 
 }
