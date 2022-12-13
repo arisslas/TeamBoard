@@ -26,6 +26,7 @@ export const es = {
   DELETE_TASK:'Borrar tarea',
   DELETE_SUCCESS: 'Registro borrado satisfactoriamente',
   SUBTITLE_DELETE:'Esta accion no es reversible',
-  MESSAGE_DELETE:'¿Estas seguro de querer borrar esta tarea'
+  MESSAGE_DELETE:'¿Estas seguro de querer borrar esta tarea',
+  WELCOME:'Bienvenido a TeamBoard'
 
 }

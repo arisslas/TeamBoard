@@ -1,9 +1,9 @@
 <template>
   <div div v-if="isAuthenticated" class="my-8 mx-12">
-    <h1 class="mt-8 mb-4 uppercase">
+    <h1 class="mt-8 mb-4 uppercase font-medium leading-tight text-2xl mt-0 mb-2 text-teal-600">
       {{ $t("ADMIN_TITLE") }}
     </h1>
-    <table class="table-fixed overflow-auto">
+    <table class="table-fixed overflow-auto mt-8">
       <thead>
         <tr>
           <th class="w-1/2 px-4 py-2">{{ $t("TITLE") }}</th>

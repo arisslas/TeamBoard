@@ -1,8 +1,7 @@
 
-// import * as constants from '@components/common/constants'
 import loginService from "@/services/loginService"
 
-//hayun (funtion factory service)
+
 function factory(service) {
   return {
 
@@ -19,4 +18,3 @@ function factory(service) {
 }
 
 export default factory(loginService)
-// export default factory(userService)

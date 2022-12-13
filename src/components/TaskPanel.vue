@@ -1,6 +1,7 @@
 <template>
-  <div v-if="isAuthenticated">
-    <h1 class="my-8 uppercase">{{ $t("TASK_TITLE") }}</h1>
+  <div>
+  <div v-if="isAuthenticated" class="mt-8">
+    <h1 class="mt-8 mb-4 uppercase font-medium leading-tight text-2xl mt-0 mb-2 text-teal-600 mb-8">{{ $t("TASK_TITLE") }}</h1>
     <button
       class="bg-transparent hover:bg-teal-600 text-teal-500 font-semibold hover:text-white py-2 px-4 border border-teal-500 hover:border-transparent rounded mb-4"
       v-on:click="openModalCreate()"
@@ -88,6 +89,14 @@
     >
     </TaskModal>
   </div>
+  <div v-if="!isAuthenticated">
+    <div class="grid h-screen place-items-center" >
+        <img :src="imageSrc" id="icon" alt="User Icon" />
+        <h1 class="mt-8 mb-4 uppercase font-medium leading-tight text-2xl mt-0 mb-2 text-teal-600 mb-8">{{ $t("WELCOME") }}</h1>
+      </div>
+
+  </div>
+</div>
 </template>
 <script>
 import * as constants from "@/components/common/constants.js";
@@ -100,6 +109,7 @@ export default {
   components: { TaskModal },
   data() {
     return {
+      imageSrc: require("@/assets/img/icono2.png"),
       columns: [
         { name: "BACKLOG" },
         { name: "TO_DO" },

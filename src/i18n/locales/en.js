@@ -26,6 +26,7 @@ export const en = {
   DELETE_TASK:'Delete task',
   DELETE_SUCCESS:'Record deleted successfully',
   SUBTITLE_DELETE:'This action is not reversible',
-  MESSAGE_DELETE:'Are you sure you want to delete this task?'
+  MESSAGE_DELETE:'Are you sure you want to delete this task?',
+  WELCOME:'Welcome to TeamBoard'
 
 }
